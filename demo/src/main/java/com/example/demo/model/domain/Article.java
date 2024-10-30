@@ -24,4 +24,9 @@ public class Article {
         this.title = title;
         this.content = content;
     }
+public void update(String title, String content) { // 현재객체상태업데이트
+    this.title= title;
+    this.content= content;
+}
+
 }

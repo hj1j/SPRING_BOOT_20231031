@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+/*package com.example.demo.controller;
 
 import com.example.demo.model.domain.Article;
 import com.example.demo.model.service.AddArticleRequest;
@@ -7,10 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+*/
 
-
-
-@RequiredArgsConstructor
+/*@RequiredArgsConstructor
 @RestController // @Controller + @ResponseBody
 public class BlogRestController {
     private final BlogService blogService;
@@ -26,4 +25,4 @@ public class BlogRestController {
     public void favicon() {
         // 아무 작업도 하지 않음
     }
-}
+}*/
