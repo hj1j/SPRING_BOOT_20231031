@@ -10,7 +10,9 @@ import com.example.demo.model.domain.Board;
 import com.example.demo.model.repository.BlogRepository;
 import com.example.demo.model.repository.BoardRepository;
 
+
 import lombok.RequiredArgsConstructor;
+
 
 @Service  //서비스니까
 @RequiredArgsConstructor // 생성자 자동 생성(부분)
@@ -56,6 +58,12 @@ public class BlogService {
 
     public void delete(Long id) {
         blogRepository.deleteById(id);
+    }
+    
+
+    public Board save(AddArticleRequest request){
+        // DTO가 없는 경우 이곳에 직접 구현 가능
+        return blogRepository.save(request.toEntity());
     }
 }
 

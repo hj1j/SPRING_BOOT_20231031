@@ -22,6 +22,8 @@ import com.example.demo.model.service.AddArticleRequest;
 import com.example.demo.model.service.BlogService;
 
 import com.example.demo.model.domain.Board;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller // 컨트롤러 어노테이션 명시
 public class BlogController {
@@ -101,5 +103,51 @@ public class BlogController {
         }
         return "board_view"; // .HTML 연결
     }
-    
+    //7주차 연습문제
+    /*@GetMapping("/board_edit/{id}")
+    public String board_edit(Model model, @PathVariable Long id) {
+        Optional<Board> list = blogService.findById(id);
+        if (list.isPresent()) {
+        model.addAttribute("board", list.get());
+        } else { // 처리할로직추가(예: 오류페이지로리다이렉트, 예외처리등)
+        return"/error_page/article_error"; // 오류처리페이지로연결(이름수정됨)
+        }
+        return "board_edit"; // .HTML 연결
+        }
+*/
+       /* @GetMapping("/board_edit") // 새로운 게시판 링크 지정
+    public String board_edit(Model model) {
+        List<Board> list = blogService.findAll(); // 게시판 전체 리스트
+        model.addAttribute("boards", list); // 모델에 추가
+        return "board_edit"; // .HTML 연결
+    }*/
+
+    /*
+    @GetMapping("/board_edit")
+    public String board_edit() {
+        return "board_list";
+    }
+    */
+
+    @PutMapping("/api/board_edit/{id}")
+    public String updateBoard(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
+    blogService.update(id, request);
+    return "redirect:/borad_list"; // 글 수정 이후 .html 연결
+}
+            
+    //
+
+    @GetMapping("/board_write")
+    public String board_write() {
+        return "board_write";
+    }
+
+
+    //생략….
+    @PostMapping("/api/boards") // 글쓰기 게시판 저장
+    public String addboards(@ModelAttribute AddArticleRequest request) {
+        blogService.save(request);
+        return "redirect:/board_list"; // .HTML 연결
+    }
+
 }
