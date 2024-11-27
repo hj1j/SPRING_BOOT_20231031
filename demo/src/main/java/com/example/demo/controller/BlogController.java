@@ -137,6 +137,7 @@ public class BlogController {
         return "board_list";
     }
     */
+    
 
     @PutMapping("/api/board_edit/{id}")
     public String updateBoard(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
@@ -169,11 +170,21 @@ public class BlogController {
         } else {
             list = blogService.searchByKeyword(keyword, pageable); // 키워드로 검색
         }
+        //8
         model.addAttribute("boards", list); // 모델에 추가
         model.addAttribute("totalPages", list.getTotalPages()); // 페이지 크기
         model.addAttribute("currentPage", page); // 페이지 번호
         model.addAttribute("keyword", keyword); // 키워드
         return "board_list"; // .HTML 연결
-}
+    }
+
+    //삭제
+    @DeleteMapping("/api/board_delete/{id}")
+     public String deleteArticle(@PathVariable Long id) {
+         blogService.delete(id);
+         return "redirect:/board_list";
+    }
+
+    
 
 }
